@@ -10,8 +10,10 @@ public class Application {
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater( () -> {
-			FunctionModel model = new QuadraticFunction();
+			// FunctionModel model = new QuadraticFunction();
 			// FunctionModel model = new LogarithmicFunction();
+			// FunctionModel model = new AbsoluteFunction();
+			FunctionModel model = new CrazyFunction();
 			
 			JFrame c, p, v;
 			Toolkit tk = Toolkit.getDefaultToolkit();
