@@ -10,6 +10,8 @@ import java.util.Observer;
 
 import javax.swing.JPanel;
 
+import plotter.function.FunctionModel;
+
 public class PlotView extends JPanel implements Observer {
 
 	private static final int WIDTH = 400, HEIGHT = 300;

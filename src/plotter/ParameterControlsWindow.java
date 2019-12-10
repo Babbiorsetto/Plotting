@@ -5,9 +5,11 @@ import java.awt.EventQueue;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 
-public class ControlsWindow extends JFrame {
+import plotter.function.FunctionModel;
 
-	public ControlsWindow(FunctionModel model) {
+public class ParameterControlsWindow extends JFrame {
+
+	public ParameterControlsWindow(FunctionModel model) {
 		
 		setTitle("ControlWindow");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

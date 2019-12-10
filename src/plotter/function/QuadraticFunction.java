@@ -1,4 +1,4 @@
-package plotter;
+package plotter.function;
 
 import java.util.Arrays;
 import java.util.Observable;

@@ -1,25 +1,17 @@
-package plotter;
+package plotter.function;
 
-public class LogarithmicFunction extends FunctionModel {
+public class AbsoluteFunction extends FunctionModel {
 
-	private static final int N_PARAMS = 1;
 	private double param;
-	private String paramName;
-	
-	public LogarithmicFunction() {
-		paramName = "a";
-	}
+	private String name = "a";
 	
 	@Override
 	public int getNParams() {
-		return N_PARAMS;
+		return 1;
 	}
 
 	@Override
 	public void setParam(int i, double val) {
-		if (i != 0 ) {
-			throw new IllegalArgumentException();
-		}
 		param = val;
 		setChanged();
 		notifyObservers();
@@ -32,12 +24,13 @@ public class LogarithmicFunction extends FunctionModel {
 
 	@Override
 	public String getParamName(int i) {
-		return paramName;
+		return name;
 	}
 
 	@Override
 	public double eval(double x) {
-		return param * Math.log(x);
+		// TODO
+		return param * Math.abs(x);
 	}
 
 }

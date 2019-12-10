@@ -14,6 +14,8 @@ import javax.swing.event.ChangeListener;
 
 import com.sun.org.apache.xalan.internal.xsltc.runtime.Parameter;
 
+import plotter.function.FunctionModel;
+
 public class ParameterControlsView extends JPanel implements Observer {
 	
 	private FunctionModel model;

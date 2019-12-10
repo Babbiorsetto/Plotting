@@ -13,6 +13,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import plotter.function.FunctionModel;
+
 public class ValuesView extends JPanel implements Observer {
 
 	private static final double DEFAULT_START_X = -3.0;

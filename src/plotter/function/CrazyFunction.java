@@ -1,4 +1,4 @@
-package plotter;
+package plotter.function;
 
 public class CrazyFunction extends FunctionModel {
 

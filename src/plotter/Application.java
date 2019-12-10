@@ -6,6 +6,9 @@ import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 
+import plotter.function.CrazyFunction;
+import plotter.function.FunctionModel;
+
 public class Application {
 	
 	public static void main(String[] args) {
@@ -21,7 +24,7 @@ public class Application {
 		    int screenHeight = screenSize.height;
 		    int screenWidth = screenSize.width;
 			
-			c = new ControlsWindow(model);
+			c = new ParameterControlsWindow(model);
 			c.setLocation(screenWidth * 4 / 6, (screenHeight / 2) - (c.getHeight()));
 			c.setVisible(true);
 			
