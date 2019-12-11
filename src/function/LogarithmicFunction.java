@@ -1,6 +1,6 @@
-package plotter.function;
+package function;
 
-public class LogarithmicFunction extends FunctionModel {
+public class LogarithmicFunction implements PFunction {
 
 	private static final int N_PARAMS = 1;
 	private double param;
@@ -21,8 +21,6 @@ public class LogarithmicFunction extends FunctionModel {
 			throw new IllegalArgumentException();
 		}
 		param = val;
-		setChanged();
-		notifyObservers();
 	}
 
 	@Override

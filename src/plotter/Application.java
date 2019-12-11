@@ -6,8 +6,7 @@ import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 
-import plotter.function.CrazyFunction;
-import plotter.function.FunctionModel;
+import function.CrazyFunction;
 
 public class Application {
 	
@@ -16,7 +15,7 @@ public class Application {
 			// FunctionModel model = new QuadraticFunction();
 			// FunctionModel model = new LogarithmicFunction();
 			// FunctionModel model = new AbsoluteFunction();
-			FunctionModel model = new CrazyFunction();
+			FunctionModel model = new FunctionModel(new CrazyFunction());
 			
 			JFrame c, p, v;
 			Toolkit tk = Toolkit.getDefaultToolkit();

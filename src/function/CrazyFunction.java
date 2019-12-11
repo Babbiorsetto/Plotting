@@ -1,6 +1,6 @@
-package plotter.function;
+package function;
 
-public class CrazyFunction extends FunctionModel {
+public class CrazyFunction implements PFunction {
 
 	private static final int N_PARAMS = 2;
 	private double[] param = new double[N_PARAMS];
@@ -13,15 +13,12 @@ public class CrazyFunction extends FunctionModel {
 	
 	@Override
 	public int getNParams() {
-		// TODO
 		return N_PARAMS;
 	}
 
 	@Override
 	public void setParam(int i, double val) {
 		param[i] = val;
-		setChanged();
-		notifyObservers();
 	}
 
 	@Override

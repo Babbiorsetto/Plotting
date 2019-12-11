@@ -1,7 +1,5 @@
 package plotter;
 
-import plotter.function.FunctionModel;
-
 public class ParameterControlsController implements ParameterChangeListener {
 
 	private ParameterControlsView view;

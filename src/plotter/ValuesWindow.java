@@ -5,8 +5,6 @@ import java.awt.BorderLayout;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 
-import plotter.function.FunctionModel;
-
 public class ValuesWindow extends JFrame {
 	
 	private ValuesWindow() {

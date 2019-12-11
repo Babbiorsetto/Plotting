@@ -3,8 +3,6 @@ package plotter;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 
-import plotter.function.FunctionModel;
-
 public class PlotWindow extends JFrame {
 	
 	private PlotWindow() {

@@ -5,8 +5,6 @@ import java.awt.EventQueue;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 
-import plotter.function.FunctionModel;
-
 public class ParameterControlsWindow extends JFrame {
 
 	public ParameterControlsWindow(FunctionModel model) {

@@ -1,6 +1,6 @@
-package plotter.function;
+package function;
 
-public class AbsoluteFunction extends FunctionModel {
+public class AbsoluteFunction implements PFunction {
 
 	private double param;
 	private String name = "a";
@@ -13,8 +13,6 @@ public class AbsoluteFunction extends FunctionModel {
 	@Override
 	public void setParam(int i, double val) {
 		param = val;
-		setChanged();
-		notifyObservers();
 	}
 
 	@Override
@@ -29,7 +27,6 @@ public class AbsoluteFunction extends FunctionModel {
 
 	@Override
 	public double eval(double x) {
-		// TODO
 		return param * Math.abs(x);
 	}
 

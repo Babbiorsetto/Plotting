@@ -1,9 +1,9 @@
-package plotter.function;
+package function;
 
 import java.util.Arrays;
 import java.util.Observable;
 
-public class QuadraticFunction extends FunctionModel {
+public class QuadraticFunction implements PFunction {
 	
 	private static final String PARAMETER_NAME_NULL_MESSAGE = "I nomi delle variabili non possono essere null";
 	private static final int N_PARAMS = 3;
@@ -38,8 +38,6 @@ public class QuadraticFunction extends FunctionModel {
 	public void setParam(int i, double val) {
 		if (i < N_PARAMS) {
 			param[i] = val;
-			setChanged();
-			notifyObservers();
 		} else {
 			throw new IllegalArgumentException();
 			//TODO justify exception
