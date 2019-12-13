@@ -10,7 +10,7 @@ public class QuadraticFunction implements PFunction {
 	private double[] param = new double[N_PARAMS];
 	private String[] paramNames = new String[N_PARAMS];
 
-	public QuadraticFunction() {
+	QuadraticFunction() {
 		paramNames[0] = "a";
 		paramNames[1] = "b";
 		paramNames[2] = "c";

@@ -13,13 +13,6 @@ public class ValuesWindow extends JFrame {
 		getContentPane().setLayout(new BorderLayout());
 	}
 	
-	public ValuesWindow(FunctionModel model) {
-		this();
-		ValuesView view = new ValuesView(model);
-		add(view, BorderLayout.CENTER);
-		pack();
-	}
-	
 	public ValuesWindow(ValuesView customView) {
 		this();
 		add(customView, BorderLayout.CENTER);

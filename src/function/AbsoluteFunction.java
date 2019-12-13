@@ -5,6 +5,10 @@ public class AbsoluteFunction implements PFunction {
 	private double param;
 	private String name = "a";
 	
+	AbsoluteFunction() {
+		
+	}
+	
 	@Override
 	public int getNParams() {
 		return 1;

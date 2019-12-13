@@ -13,51 +13,39 @@ import javax.swing.JPanel;
 public class PlotView extends JPanel implements Observer {
 
 	private static final int WIDTH = 400, HEIGHT = 300;
-	
-	// x value to start plotting from
-	private double startX = -10.0;
-	// x value to stop plotting at
-	private double endX = 10.0;
-	// x value increase between plotting samples, lower values smooth the curve
-	private double step = 0.1;
-	// how many units to leave between scale numbers
-	private int graduationStep = 2;
-	
+
 	private int pixelPerUnita;
-	private FunctionModel model;
+	private FunctionModel functionModel;
+	private PlotModel plotModel;
 	
-	public PlotView(FunctionModel model) {
-		this.model = model;
-		model.addObserver(this);
-	}
-	
-	public PlotView(FunctionModel model, double startX, double endX, double step, int graduationStep) {
-		this(model);
-		this.startX = startX;
-		this.endX = endX;
-		this.step = step;
-		this.graduationStep = graduationStep;
+	public PlotView(FunctionModel functionModel, PlotModel plotModel) {
+		this.functionModel = functionModel;
+		functionModel.addObserver(this);
+		this.plotModel = plotModel;
+		plotModel.addObserver(this);
 	}
 
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		
-		Graphics2D g2d = (Graphics2D) g;
-		
 		int pixelDisponibili = getWidth();
-		pixelPerUnita = (int) (pixelDisponibili / (endX-startX));
+		pixelPerUnita = (int) (pixelDisponibili / (plotModel.getEndX()-plotModel.getStartX()));
+
+		Graphics2D g2d = (Graphics2D) g;
 
 		drawAxes(g2d);
-		
-		// draw plot
+		drawPlot(g2d);
+	}
+
+	private void drawPlot(Graphics2D g2d) {
 		int currX, currY, prevX, prevY;
-		prevX = toDrawSpaceX(startX);
-		prevY = toDrawSpaceY(model.eval(startX));
+		prevX = toDrawSpaceX(plotModel.getStartX());
+		prevY = toDrawSpaceY(functionModel.eval(plotModel.getStartX()));
 		
-		for (double d = startX + step; d < endX; d += step) {
+		for (double d = plotModel.getStartX() + plotModel.getStep(); d < plotModel.getEndX(); d += plotModel.getStep()) {
 			currX = toDrawSpaceX(d);
-			currY = toDrawSpaceY(model.eval(d));
+			currY = toDrawSpaceY(functionModel.eval(d));
 			g2d.drawLine(prevX, prevY, currX, currY);
 			prevX = currX;
 			prevY = currY;
@@ -79,7 +67,7 @@ public class PlotView extends JPanel implements Observer {
 		// scale numbers
 		int yOffset = 12;
 		int xOffset = 2;
-		for (int i = (int) startX; i < endX; i += graduationStep) {
+		for (int i = (int) plotModel.getStartX(); i < plotModel.getEndX(); i += plotModel.getGraduationStep()) {
 			g2d.drawString(i + "", i * pixelPerUnita + halfW, halfH + yOffset);
 			g2d.drawString(i + "", halfW + xOffset, -i * pixelPerUnita + halfH);
 		}

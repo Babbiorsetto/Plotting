@@ -7,19 +7,16 @@ import javax.swing.JFrame;
 
 public class ParameterControlsWindow extends JFrame {
 
-	public ParameterControlsWindow(FunctionModel model) {
+	public ParameterControlsWindow(ParameterControlsView customView) {
 		
 		setTitle("ControlWindow");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
-		
-		ParameterControlsView pcv = new ParameterControlsView(model);
-		ParameterControlsController pcc = new ParameterControlsController(pcv, model);
-		add(pcv);
-		
+
+		add(customView);
 		pack();
-		setResizable(false);
+		setResizable(true);
 	}
 
 }

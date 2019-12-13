@@ -5,6 +5,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.BoxLayout;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
@@ -12,18 +13,16 @@ import javax.swing.SwingConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import com.sun.org.apache.xalan.internal.xsltc.runtime.Parameter;
-
 public class ParameterControlsView extends JPanel implements Observer {
 	
-	private FunctionModel model;
+	private FunctionModel functionModel;
 	
 	private ParameterControl[] controls;
 	
-	public ParameterControlsView(FunctionModel model) {
-		this.model = model;
-		controls = new ParameterControl[model.getNParams()];
-		for (int i = 0; i < model.getNParams(); i++) {
+	public ParameterControlsView(FunctionModel functionModel) {
+		this.functionModel = functionModel;
+		controls = new ParameterControl[functionModel.getNParams()];
+		for (int i = 0; i < functionModel.getNParams(); i++) {
 			controls[i] = new ParameterControl(i);
 		}
 		
@@ -32,7 +31,7 @@ public class ParameterControlsView extends JPanel implements Observer {
 			add(control);
 		}
 		
-		model.addObserver(this);
+		functionModel.addObserver(this);
 	}
 	
 	public void addParameterChangeListener(ParameterChangeListener listener) {
@@ -49,7 +48,7 @@ public class ParameterControlsView extends JPanel implements Observer {
 		
 		public ParameterControl(int id) {
 			this.id = id;
-			pName.setText(model.getParamName(id));
+			pName.setText(functionModel.getParamName(id));
 			value.setText("0.0");
 			slider.addChangeListener(new ChangeListener() {
 				@Override
@@ -71,14 +70,31 @@ public class ParameterControlsView extends JPanel implements Observer {
 		}
 		
 		public void updateLabel() {
-			value.setText(model.getParam(id) + "");
+			value.setText(functionModel.getParam(id) + "");
 		}
 	}
 
 	@Override
-	public void update(Observable o, Object arg) {
-		for (ParameterControl control : controls) {
-			control.updateLabel();
+	public void update(Observable o, Object typeOfChange) {
+		if (typeOfChange == FunctionModel.ChangeType.PARAMETER) {	
+			for (ParameterControl control : controls) {
+				control.updateLabel();
+			}
+		} else if (typeOfChange == FunctionModel.ChangeType.FUNCTION) {
+			
+			for (ParameterControl control : controls) {
+				remove(control);
+			}
+			controls = new ParameterControl[functionModel.getNParams()];
+			for (int i = 0; i < functionModel.getNParams(); i++) {
+				controls[i] = new ParameterControl(i);
+			}
+			for (ParameterControl control : controls) {
+				add(control);
+			}
+			
+			revalidate();
+			((JFrame)getTopLevelAncestor()).pack();
 		}
 		
 	}

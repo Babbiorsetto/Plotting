@@ -6,7 +6,7 @@ public class CrazyFunction implements PFunction {
 	private double[] param = new double[N_PARAMS];
 	private String[] paramNames = new String[N_PARAMS];
 	
-	public CrazyFunction() {
+	CrazyFunction() {
 		paramNames[0] = "a";
 		paramNames[1] = "b";
 	}

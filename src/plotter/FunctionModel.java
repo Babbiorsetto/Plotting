@@ -15,7 +15,7 @@ public class FunctionModel extends Observable {
 	public void setParam(int id, double value) {
 		function.setParam(id, value);
 		setChanged();
-		notifyObservers();
+		notifyObservers(ChangeType.PARAMETER);
 	}
 
 	public int getNParams() {
@@ -36,6 +36,16 @@ public class FunctionModel extends Observable {
 	
 	public void setFunction(PFunction function) {
 		this.function = function;
+		setChanged();
+		notifyObservers(ChangeType.FUNCTION);
+	}
+	
+	public PFunction getFunction() {
+		return function;
+	}
+	
+	public enum ChangeType {
+		FUNCTION, PARAMETER;
 	}
 	
 	

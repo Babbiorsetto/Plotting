@@ -6,7 +6,7 @@ public class LogarithmicFunction implements PFunction {
 	private double param;
 	private String paramName;
 	
-	public LogarithmicFunction() {
+	LogarithmicFunction() {
 		paramName = "a";
 	}
 	

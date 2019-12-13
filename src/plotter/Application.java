@@ -7,37 +7,50 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 
 import function.CrazyFunction;
+import function.FunctionFactory;
+import function.PFunction;
 
 public class Application {
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater( () -> {
-			// FunctionModel model = new QuadraticFunction();
-			// FunctionModel model = new LogarithmicFunction();
-			// FunctionModel model = new AbsoluteFunction();
-			FunctionModel model = new FunctionModel(new CrazyFunction());
-			
-			JFrame c, p, v;
+			JFrame c, p, v, g;
 			Toolkit tk = Toolkit.getDefaultToolkit();
-		    Dimension screenSize = tk.getScreenSize();
-		    int screenHeight = screenSize.height;
-		    int screenWidth = screenSize.width;
+			Dimension screenSize = tk.getScreenSize();
+			int screenHeight = screenSize.height;
+			int screenWidth = screenSize.width;
+
+			PFunction fun = FunctionFactory.getFunctionByType(FunctionType.CRAZY);
+			FunctionModel functionModel = new FunctionModel(fun);
+			PlotModel plotModel = new PlotModel();
 			
-			c = new ParameterControlsWindow(model);
+		    ParameterControlsView pcv = new ParameterControlsView(functionModel);
+		    ParameterControlsController pcc = new ParameterControlsController(pcv, functionModel);
+		    ValuesView vv = new ValuesView(functionModel);
+		    PlotView pv = new PlotView(functionModel, plotModel);
+		    GraphOptionsView gov = new GraphOptionsView(plotModel, functionModel);
+		    GraphOptionsController goc = new GraphOptionsController(gov, plotModel);
+		    FunctionTypeController ftc = new FunctionTypeController(gov, functionModel);
+		    
+			c = new ParameterControlsWindow(pcv);
 			c.setLocation(screenWidth * 4 / 6, (screenHeight / 2) - (c.getHeight()));
 			c.setVisible(true);
 			
-			p = new PlotWindow(model);
+			p = new PlotWindow(pv);
 			p.setLocation( (screenWidth / 2) - p.getWidth() / 2, (screenHeight / 2) - p.getHeight() / 2);
 			p.setVisible(true);
-			// new PlotWindow(new PlotView(model, -50, 60, 5, 10)).setVisible(true);;
 			
-			v = new ValuesWindow(model);
+			v = new ValuesWindow(vv);
 			v.setLocation(c.getLocation().x, c.getLocation().y - v.getHeight());
 			v.setVisible(true);
-			// new ValuesWindow(new ValuesView(model, -50, 60, 5)).setVisible(true);
+			
+			g = new GraphOptionsWindow(gov);
+			g.setLocation(p.getLocation().x, p.getLocation().y + p.getHeight());
+			g.setVisible(true);
 
 		});
+		// TODO aggiusta tutti i modelli in modo che non accettino di essere impostati a valori impossibili
+		// TODO pensa se è il caso di rendere le funzioni singleton
 
 	}
 

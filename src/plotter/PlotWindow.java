@@ -11,13 +11,6 @@ public class PlotWindow extends JFrame {
 		getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));	
 	}
 	
-	public PlotWindow(FunctionModel model) {
-		this();
-		PlotView view = new PlotView(model);
-		add(view);
-		pack();
-	}
-	
 	public PlotWindow(PlotView customView) {
 		this();
 		add(customView);
